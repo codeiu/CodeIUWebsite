@@ -4,14 +4,20 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-	name = request.args.get('name')
-	if name is None:
-		name = "World"
-	return 'Hello '+name+'!'
+	return render_template('home.html')
 
-@app.route('/page1')
-def page1():
-	return render_template('page1.html', name="Zack")
+@app.route('/about')
+def about():
+	return render_template('about.html')
+
+@app.route('/calendar')
+def calendar():
+	return render_template('calendar.html')
+
+@app.route('/videos')
+def videos():
+	return render_template('videos.html')
+
 
 if __name__ == "__main__":
 	app.run(debug=True)

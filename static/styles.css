@@ -1,0 +1,36 @@
+body, html {
+	margin: 0;
+	padding: 0;
+}
+
+#header {
+	background: #DD0031;
+}
+
+#footer {
+	background: #DD0031;
+	height: 50px;
+}
+
+.content-box {
+	min-height: calc(100vh - 68px);
+}
+
+#home-link {
+	font-weight: bold;
+	text-decoration: none;
+	color: #000;
+}
+
+.nav {
+	display: inline-flex;
+
+}
+.nav a {
+	color: #000;
+	text-decoration: none;
+	margin-left: 20px;
+}
+.nav a:hover {
+	color: #FFF;
+}
