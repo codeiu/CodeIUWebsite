@@ -1,10 +1,12 @@
 body, html {
 	margin: 0;
 	padding: 0;
+	font-family: Roboto, Arial, sans-serif;
 }
 
 #header {
 	background: #DD0031;
+	padding: 5px 20px;
 }
 
 #footer {
@@ -14,6 +16,8 @@ body, html {
 
 .content-box {
 	min-height: calc(100vh - 68px);
+	margin: 0 auto;
+	width: 90vw;
 }
 
 #home-link {
