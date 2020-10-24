@@ -28,6 +28,9 @@ def videos():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+	"""
+	GIT TEST
+	"""
 	form = RegistrationForm()
 	if form.validate_on_submit():
 		app.logger.info('validated')
