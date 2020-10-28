@@ -2,8 +2,15 @@
 	<head>
 		<link rel="stylesheet" href="/static/styles.css"/>
 		<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+		<script src="/static/jquery.min.js"></script>
 
-		<title>Title</title>
+		<title>
+			{% if title %}
+				{{ title }}
+			{% else %}
+				Code@IU
+			{% endif %}
+		</title>
 	</head>
 
 	<body>

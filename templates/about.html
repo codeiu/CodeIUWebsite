@@ -2,7 +2,14 @@
 
 	<div class="content-box">
 		<h1>About Us</h1>
-		<p>This is our about us page</p>
+		
+		<div id="board-members">
+		{% for boardMember in board %}
+			<div class="board-member">
+				{{ boardMember.name }}
+			</div>
+		{% endfor %}
+		</div>
 	</div>
 
 {% include "layout/footer.html" %}

@@ -38,3 +38,15 @@ body, html {
 .nav a:hover {
 	color: #FFF;
 }
+
+#board-members {
+	text-align: center;
+}
+
+.board-member {
+	display: inline-block;
+	border: 1px solid black;
+	padding: 5px;
+	margin: 5px 10px;
+	width: 200px;
+}
