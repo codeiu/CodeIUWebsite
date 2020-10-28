@@ -1,5 +1,5 @@
 from flask import request, render_template, url_for, redirect
-from website import app
+from website import app, db, models
 from website.forms import RegistrationForm
 
 
@@ -37,6 +37,8 @@ def register():
         if request.method == 'POST':
             app.logger.info('POST')
             username = request.form['username']
+            db.session.add(models.User(username=request.form['username'], email=request.form['email'], password=request.form['password']))
+            db.session.commit()
             return redirect(url_for('home'), code=307)  # it took me way too long to figure out this damn code arg
         elif request.method == 'GET':
             app.logger.info('GET')
