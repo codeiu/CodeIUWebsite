@@ -55,6 +55,23 @@ def register():
 			return redirect(url_for('home',name=form.username.data)) 
 	return render_template('register.html', form=form)
 
+@app.route('/register', methods=['GET', 'POST'])
+def register():
+	"""
+	GIT TEST
+	"""
+	form = RegistrationForm()
+	if form.validate_on_submit():
+		app.logger.info('validated')
+		if request.method == 'POST':
+			app.logger.info('POST')
+			username = request.form['username']
+			return redirect(url_for('home'), code=307) 	# it took me way too long to figure out this damn code arg
+		elif request.method == 'GET':
+			app.logger.info('GET')
+			return redirect(url_for('home',name=form.username.data)) 
+	return render_template('register.html', form=form)
+
 
 if __name__ == "__main__":
 	app.run(debug=True)
