@@ -6,13 +6,19 @@ app.config['SECRET_KEY'] = 'a303cd25b21ff329d8ec262b31d082c0'
 
 board_members = [
 	{
-		"name": "Zack Seliger"
+		"name": "Zack Seliger",
+		"img": "/static/potatoe.jpg",
+		"desc": "Zack is super handsome and also really talanted. He loves everyone and probably will solve world peace or something in the near future."
 	},
 	{
-		"name": "Teresa Perez"
+		"name": "Teresa Perez",
+		"img": "/static/potatoe.jpg",
+		"desc": "Teresa is pretty cool and also has some pretty cool tattoos."
 	},
 	{
-		"name": "Matthew Cummings"
+		"name": "Matthew Cummings",
+		"img": "/static/potatoe.jpg",
+		"desc": "OSHE FOSHJEFUHSOI FHIES HFIS HEF HSLEF HS HEFSH EFH SEUIHF UISEHF ESFOIS EHJOFIHES UIHFEISH FUISE HFUHESKUFHSKUEHF KUESHFKHESKUF HESKU HFKUES HFKUSH EFKUHESFKU HES"
 	}
 ]
 
@@ -37,23 +43,6 @@ def calendar():
 @app.route('/videos')
 def videos():
 	return render_template('videos.html', title="Videos")
-
-@app.route('/register', methods=['GET', 'POST'])
-def register():
-	"""
-	GIT TEST
-	"""
-	form = RegistrationForm()
-	if form.validate_on_submit():
-		app.logger.info('validated')
-		if request.method == 'POST':
-			app.logger.info('POST')
-			username = request.form['username']
-			return redirect(url_for('home'), code=307) 	# it took me way too long to figure out this damn code arg
-		elif request.method == 'GET':
-			app.logger.info('GET')
-			return redirect(url_for('home',name=form.username.data)) 
-	return render_template('register.html', form=form)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
