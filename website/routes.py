@@ -37,7 +37,7 @@ def register():
         app.logger.info('validated')
         if request.method == 'POST':
             app.logger.info('POST')
-            username = request.form['username']
+            username = form.username.data
             hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
             #db.session.add(models.User(username=request.form['username'], email=request.form['email'], password=request.form['password']))
             db.session.add(models.User(username=form.username.data, email=form.email.data, password=hashed_password))
@@ -51,15 +51,16 @@ def register():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    if current_user.is_authenticated:
-        return redirect(url_for('home'))
+    # if current_user.is_authenticated:
+    #     return redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
-        user = User.query.filter_by(email=form.email.data).first()
+        user = models.User.query.filter_by(email=form.email.data).first()
         if user and bcrypt.check_password_hash(user.password, form.password.data):
             login_user(user)
             next_page = request.args.get('next')
-            return redirect(next_page) if next_page else redirect(url_for('home'))
+            # app.logger.info(user.username)
+            return redirect(next_page) if next_page else redirect(url_for('home', username=user.username))
         else:
             flash('Login Unsuccessful. Please check email and password', 'danger')
     return render_template('login.html', form=form)
