@@ -23,20 +23,30 @@
 			overflow: hidden;
 		}
 		.board-member p {
-			margin: 4px 0;
-		}
-		.test {
-			height: 500px;
-		}
-		.test .img-holder {
-			height: 200px;
+			margin: 4px;
 		}
 	</style>
 
 	<script>
 		$(document).ready(function() {
 			$('.board-member').on('click', function(e) {
-				$(e.currentTarget).toggleClass('test');
+				// $(e.currentTarget).toggleClass('test');
+				if ($(e.currentTarget).height() === 130) {
+					// resize the image
+					let imageSize = $(e.currentTarget).children('.img-holder').children().height();
+					$(e.currentTarget).children('.img-holder').css({height: imageSize+"px"});
+
+					// calculate the height of all children of the element and resize accordingly
+					let height = imageSize+10;
+					for (let i = 1; i < $(e.currentTarget).children().length; i++) {
+						height += $(e.currentTarget).children().eq(i).height();
+					}
+					$(e.currentTarget).css({height: height+"px"});
+				}
+				else {
+					$(e.currentTarget).children('.img-holder').css({height: "100px"});
+					$(e.currentTarget).css({height: "130px"});
+				}
 			});
 		});
 	</script>
