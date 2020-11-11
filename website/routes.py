@@ -2,6 +2,7 @@ from flask import request, render_template, url_for, redirect
 from website import app, db, models, bcrypt
 from website.forms import RegistrationForm, LoginForm
 from flask_login import login_user, current_user, logout_user, login_required
+import traceback
 
 
 @app.route('/', methods=['GET', 'POST'])
@@ -34,18 +35,23 @@ def videos():
 def register():
     form = RegistrationForm()
     if form.validate_on_submit():
-        app.logger.info('validated')
-        if request.method == 'POST':
-            app.logger.info('POST')
-            username = form.username.data
-            hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-            #db.session.add(models.User(username=request.form['username'], email=request.form['email'], password=request.form['password']))
-            db.session.add(models.User(username=form.username.data, email=form.email.data, password=hashed_password))
-            db.session.commit()
-            return redirect(url_for('home'), code=307)  # it took me way too long to figure out this damn code arg
-        elif request.method == 'GET':
-            app.logger.info('GET')
-            return redirect(url_for('home', name=form.username.data))
+        try:
+            if request.method == 'POST':
+                app.logger.info('POST')
+                username = form.username.data
+                hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+                # add to database
+                db.session.add(models.User(username=form.username.data, email=form.email.data, password=hashed_password))
+                db.session.commit()
+                app.logger.info('\n\nvalidated 34213t wqd\n\n')
+                return redirect(url_for('home'), code=307)  # it took me way too long to figure out this damn code arg
+            elif request.method == 'GET':
+                app.logger.info('GET')
+                return redirect(url_for('home', name=form.username.data))
+        except:
+            app.logger.info('\n\nAHHHHHHHHHHHH\n\n')
+            app.logger.info(traceback.format_exc())
+
     return render_template('register.html', form=form)
 
 
@@ -55,12 +61,19 @@ def login():
     #     return redirect(url_for('home'))
     form = LoginForm()
     if form.validate_on_submit():
-        user = models.User.query.filter_by(email=form.email.data).first()
-        if user and bcrypt.check_password_hash(user.password, form.password.data):
-            login_user(user)
-            next_page = request.args.get('next')
-            # app.logger.info(user.username)
-            return redirect(next_page) if next_page else redirect(url_for('home', username=user.username))
-        else:
-            flash('Login Unsuccessful. Please check email and password', 'danger')
+        try:
+            user = models.User.query.filter_by(email=form.email.data).first()
+            db_password = user.password
+            password = form.password.data.encode('utf-8')
+            if user and bcrypt.check_password_hash(db_password, password):
+                login_user(user)
+                next_page = request.args.get('next')
+                # app.logger.info(user.username)
+                return redirect(next_page) if next_page else redirect(url_for('home', username=user.username))
+            else:
+                pass
+                #flash('Login Unsuccessful. Please check email and password', 'danger')
+        except:
+            app.logger.info('\n\nAHHHHHHHHHHHH\n\n')
+            app.logger.info(traceback.format_exc(),'\n\n')
     return render_template('login.html', form=form)
