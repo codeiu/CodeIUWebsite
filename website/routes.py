@@ -77,3 +77,8 @@ def login():
             app.logger.info('\n\nAHHHHHHHHHHHH\n\n')
             app.logger.info(traceback.format_exc(),'\n\n')
     return render_template('login.html', form=form)
+
+@app.route("/logout")
+def logout():
+    logout_user()
+    return redirect(url_for('home'))
