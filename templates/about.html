@@ -5,12 +5,12 @@
 			width: inherit;
 		}
 		.img-holder {
-			height: 100px;
 			width: inherit;
+			height: 100px;
+			transition: height 0.2s;
 			overflow: hidden;
 			display: flex;
 			align-items: center;
-			transition: height 0.2s;
 		}
 		.board-member {
 			height: 130px;
@@ -30,22 +30,23 @@
 	<script>
 		$(document).ready(function() {
 			$('.board-member').on('click', function(e) {
-				// $(e.currentTarget).toggleClass('test');
 				if ($(e.currentTarget).height() === 130) {
-					// resize the image
-					let imageSize = $(e.currentTarget).children('.img-holder').children().height();
-					$(e.currentTarget).children('.img-holder').css({height: imageSize+"px"});
-
-					// calculate the height of all children of the element and resize accordingly
-					let height = imageSize+10;
+					let imgHeight = $(e.currentTarget).children('.img-holder').
+						children().height();
+						
+					// calculate height of all interior elements
+					let otherHeight = 0;
 					for (let i = 1; i < $(e.currentTarget).children().length; i++) {
-						height += $(e.currentTarget).children().eq(i).height();
+						otherHeight +=  $(e.currentTarget).children().eq(i).height();
 					}
-					$(e.currentTarget).css({height: height+"px"});
+					$(e.currentTarget).css({height: imgHeight+otherHeight+16+"px"});
+					
+					$(e.currentTarget).children('.img-holder').
+						css({height: imgHeight+"px"});
 				}
 				else {
-					$(e.currentTarget).children('.img-holder').css({height: "100px"});
 					$(e.currentTarget).css({height: "130px"});
+					$(e.currentTarget).children('.img-holder').css({height: "100px"});
 				}
 			});
 		});

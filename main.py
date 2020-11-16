@@ -8,12 +8,12 @@ board_members = [
 	{
 		"name": "Zack Seliger",
 		"img": "/static/potatoe.jpg",
-		"desc": "Zack is super handsome and also really talanted. He loves everyone and probably will solve world peace or something in the near future."
+		"desc": "Zack oiasjf oisfj oasij feosij foijes ofijaseo fijseo fiosifj osijef oisajeofi asjefois jefoisj ef"
 	},
 	{
 		"name": "Teresa Perez",
 		"img": "/static/potatoe.jpg",
-		"desc": "Teresa is pretty cool and also has some pretty cool tattoos."
+		"desc": "Teresa asj fisj efoiasj feoisaj efoisjae foisje fojs foisfje oisaj efoisjef oisef."
 	},
 	{
 		"name": "Matthew Cummings",
