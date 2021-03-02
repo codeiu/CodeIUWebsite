@@ -31,9 +31,16 @@ app.get("/videos", (req, res) => {
     })
     .catch((err) => alert(err))
     .finally(() => {
+      // ejs.renderFile(
+      //   path.join(__dirname, "views", "videos.html"),
+      //   { videos: videoIds },
+      //   {},
+      //   (err,str) => {
+      //     res.send(str);
+      //   }
+      // );
       res.sendFile(path.join(__dirname, "views", "videos.html"));
     });
-  //{ videos: videoIds }
 });
 
 app.listen(port, () => {
