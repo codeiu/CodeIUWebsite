@@ -7,6 +7,36 @@ html, body {
 	line-height: 1.5em;
 }
 
+html::before {
+	content: "";
+
+	background: url("/background.png");
+	background-repeat: repeat;
+	opacity: 0.1;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	top: 0;
+	left: 0;
+}
+
+#nav {
+	display: flex;
+	align-items: center;
+}
+
+#nav a {
+	text-decoration: none;
+	color: #242638;
+	margin: 0 10px;
+	font-weight: bold;
+	font-size: 35px;
+}
+#nav a:hover {
+	color: #F33;
+}
+
 #header {
 	width: 100%;
 	height: 75px;
