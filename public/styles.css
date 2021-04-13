@@ -52,5 +52,30 @@ h1 {
 .content-box {
 	text-align: center;
 	width: 90%;
-	margin: 0 auto;
+	margin: 20px auto;
+}
+
+.videoCard {
+	text-decoration: none;
+	color: white;
+	display: inline-block;
+	width: 300px;
+	margin: 10px;
+	position: relative;
+}
+.videoCard:hover {
+	color: #F33;
+}
+.videoCard img {
+	width: 100%;
+	border-radius: 3px;
+	box-shadow: 0 0 5px black;
+}
+.videoCard span {
+	position: absolute;
+	width: 100%;
+	left: 0;
+	text-align: center;
+	background-color: rgba(0,0,0,0.8);
+	bottom: 7px;
 }

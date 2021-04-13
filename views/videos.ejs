@@ -1,7 +1,12 @@
 <%- include('layout/header.ejs') -%>
 
-<% videos.forEach((video) => { %>
-	<p><%= video.snippet.title %></p>
-<% }); %>
+<div class="content-box">
+	<% videos.forEach((video) => { %>
+		<a class="videoCard" href="https://youtube.com/watch?v=<%= video.id.videoId %>" target="_blank" >
+			<img src="<%= video.snippet.thumbnails.high.url %>"/>
+			<span><%= video.snippet.title %></span>
+		</a>
+	<% }); %>
+</div>
 
 <%- include('layout/footer.ejs') -%>
